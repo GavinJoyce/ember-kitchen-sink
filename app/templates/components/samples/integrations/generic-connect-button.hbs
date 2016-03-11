@@ -1,0 +1,5 @@
+{{#if integration.hasIntegrated}}
+  {{#link-to 'samples.integrations.integration' integration}}Go to integration{{/link-to}}
+{{else}}
+  {{yield}}
+{{/if}}

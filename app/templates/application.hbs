@@ -1,3 +1,35 @@
-<h2 id="title">Welcome to Ember</h2>
+{{#paper-nav-container}}
+  {{#paper-sidenav class="md-sidenav-left md-whiteframe-z2" locked-open="gt-sm"}}
+    {{#paper-toolbar}}
+      <div class="md-toolbar-tools">
+        <div class="logo">
+          <strong>
+            {{#paper-item action="transitionTo" param="index"}}Ember Kitchen Sink{{/paper-item}}
+          </strong>
+        </div>
+      </div>
+    {{/paper-toolbar}}
 
-{{outlet}}
+    {{#paper-content}}
+      {{#paper-list}}
+        {{#paper-item action="transitionTo" param="samples"}}Samples{{/paper-item}}
+        {{#paper-item action="transitionTo" param="spikes"}}Spikes{{/paper-item}}
+      {{/paper-list}}
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+  <div layout="column" tabindex="-1" role="main" flex>
+    {{#paper-toolbar}}
+      <div class="md-toolbar-tools">
+        {{#paper-sidenav-toggle as |toggle|}}
+          {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon "menu"}}{{/paper-button}}
+        {{/paper-sidenav-toggle}}
+        <span class="md-breadcrumb-page">Title</span>
+      </div>
+    {{/paper-toolbar}}
+
+    {{#paper-content class="md-padding"}}
+      {{outlet}}
+    {{/paper-content}}
+  </div>
+{{/paper-nav-container}}

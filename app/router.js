@@ -6,6 +6,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('samples', () => {
+    this.route('integrations');
+  });
+
+  this.route('spikes', () => {
+
+  });
 });
 
 export default Router;

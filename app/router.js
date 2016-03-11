@@ -6,8 +6,10 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('samples', () => {
-    this.route('integrations');
+  this.route('samples', function() {
+    this.route('integrations', function() {
+      this.route('integration', { path: ':integration_id' });
+    });
   });
 
   this.route('spikes', () => {

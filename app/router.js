@@ -10,6 +10,9 @@ Router.map(function() {
     this.route('integrations', function() {
       this.route('integration', { path: ':integration_id' });
     });
+
+    this.route('prevent');
+    this.route('form');
   });
 
   this.route('spikes', () => {

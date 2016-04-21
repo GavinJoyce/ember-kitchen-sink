@@ -3,12 +3,12 @@ import { test, moduleForComponent } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 function mockRunLater(context) {
-  context.mockRunLater = { //TODO: GJ: naming
-    originalRunLater: Em.run.later,
-    defferedRunLaters: [],
+  context.mockedRunLater = {
+    original: Em.run.later,
+    deffereds: [],
     next: function() {
       Em.run(() => {
-        let defered = context.mockRunLater.defferedRunLaters.splice(0, 1)[0];
+        let defered = context.mockedRunLater.deffereds.splice(0, 1)[0];
 
         if(defered) {
           defered.resolve();
@@ -22,12 +22,12 @@ function mockRunLater(context) {
   Em.run.later = function(fn) {
     let defer = Em.RSVP.defer();
     defer.promise.then(fn);
-    context.mockRunLater.defferedRunLaters.push(defer);
+    context.mockedRunLater.deffereds.push(defer);
   };
 }
 
 function restoreRunLater(context) {
-  Em.run.later = context.mockRunLater.originalRunLater;
+  Em.run.later = context.mockedRunLater.original;
 }
 
 moduleForComponent('delayed-action-button', 'Integration | Component | delayed action button', {
@@ -48,11 +48,11 @@ test('option 2: should change text after a delay', function(assert) {
 
   assert.equal(this.$('button').text(), '...please wait...');
 
-  this.mockRunLater.next();
+  this.mockedRunLater.next();
 
   assert.equal(this.$('button').text(), '...continue to wait...');
 
-  this.mockRunLater.next();
+  this.mockedRunLater.next();
 
   assert.equal(this.$('button').text(), 'Click me again');
 

@@ -1,0 +1,13 @@
+<style>
+  textarea { width: 100%; height: 120px; background-color: cornflowerblue; color: white; font-size: 13px; }
+</style>
+
+<h3>this is a vm</h3>
+
+<textarea onkeyup={{action (mut bytecode) value='target.value'}}>
+  {{unbound bytecode}}
+</textarea>
+
+<pre>machine bytecode: {{machineBytecode}}</pre>
+
+<button {{action run}}>Run</button>

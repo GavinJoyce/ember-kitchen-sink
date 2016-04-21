@@ -12,8 +12,8 @@ Router.map(function() {
     });
   });
 
-  this.route('spikes', () => {
-
+  this.route('spikes', function() {
+    this.route('vm');
   });
 });
 

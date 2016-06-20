@@ -1,0 +1,14 @@
+<button {{action 'increment'}}>Increment</button>
+
+outer component, count: {{count}}
+
+<table border="1">
+  <tr>
+    <td>
+      {{spikes/inner-component count=count}}
+    </td>
+    <td>
+      {{spikes/inner-component count=count}}
+    </td>
+  </tr>
+</table>
